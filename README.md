@@ -20,7 +20,7 @@ $ npm install -g @tsfw/cli
 $ tsfw COMMAND
 running command...
 $ tsfw (--version)
-@tsfw/cli/0.0.0 darwin-x64 node-v18.12.1
+@tsfw/cli/0.0.1 darwin-x64 node-v18.12.1
 $ tsfw --help [COMMAND]
 USAGE
   $ tsfw COMMAND
@@ -29,9 +29,15 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`tsfw hello PERSON`](#tsfw-hello-person)
-* [`tsfw hello world`](#tsfw-hello-world)
+* [`tsfw command:migrate`](#tsfw-commandmigrate)
+* [`tsfw command:migrate-fresh`](#tsfw-commandmigrate-fresh)
 * [`tsfw help [COMMANDS]`](#tsfw-help-commands)
+* [`tsfw make:controller [NAME]`](#tsfw-makecontroller-name)
+* [`tsfw make:migration [NAME]`](#tsfw-makemigration-name)
+* [`tsfw make:model`](#tsfw-makemodel)
+* [`tsfw make:seeder`](#tsfw-makeseeder)
+* [`tsfw migrate`](#tsfw-migrate)
+* [`tsfw migrate:fresh`](#tsfw-migratefresh)
 * [`tsfw plugins`](#tsfw-plugins)
 * [`tsfw plugins:install PLUGIN...`](#tsfw-pluginsinstall-plugin)
 * [`tsfw plugins:inspect PLUGIN...`](#tsfw-pluginsinspect-plugin)
@@ -40,47 +46,47 @@ USAGE
 * [`tsfw plugins:uninstall PLUGIN...`](#tsfw-pluginsuninstall-plugin)
 * [`tsfw plugins:uninstall PLUGIN...`](#tsfw-pluginsuninstall-plugin-1)
 * [`tsfw plugins:uninstall PLUGIN...`](#tsfw-pluginsuninstall-plugin-2)
-* [`tsfw plugins update`](#tsfw-plugins-update)
+* [`tsfw plugins:update`](#tsfw-pluginsupdate)
 
-## `tsfw hello PERSON`
+## `tsfw command:migrate`
 
-Say hello
-
-```
-USAGE
-  $ tsfw hello [PERSON] -f <value>
-
-ARGUMENTS
-  PERSON  Person to say hello to
-
-FLAGS
-  -f, --from=<value>  (required) Who is saying hello
-
-DESCRIPTION
-  Say hello
-
-EXAMPLES
-  $ oex hello friend --from oclif
-  hello friend from oclif! (./src/commands/hello/index.ts)
-```
-
-_See code: [dist/commands/hello/index.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.0/dist/commands/hello/index.ts)_
-
-## `tsfw hello world`
-
-Say hello world
+Generate migration class
 
 ```
 USAGE
-  $ tsfw hello world
+  $ tsfw command:migrate
 
 DESCRIPTION
-  Say hello world
+  Generate migration class
+
+ALIASES
+  $ tsfw migrate
 
 EXAMPLES
-  $ tsfw hello world
-  hello world! (./src/commands/hello/world.ts)
+  $ tsfw command:migrate
 ```
+
+_See code: [dist/commands/command/migrate.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.1/dist/commands/command/migrate.ts)_
+
+## `tsfw command:migrate-fresh`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw command:migrate-fresh
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw migrate:fresh
+
+EXAMPLES
+  $ tsfw command:migrate-fresh
+```
+
+_See code: [dist/commands/command/migrate-fresh.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.1/dist/commands/command/migrate-fresh.ts)_
 
 ## `tsfw help [COMMANDS]`
 
@@ -101,6 +107,125 @@ DESCRIPTION
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v5.2.2/src/commands/help.ts)_
+
+## `tsfw make:controller [NAME]`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw make:controller [NAME] [-f]
+
+FLAGS
+  -f, --force
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw make:controller
+
+EXAMPLES
+  $ tsfw make:controller
+```
+
+_See code: [dist/commands/make/controller.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.1/dist/commands/make/controller.ts)_
+
+## `tsfw make:migration [NAME]`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw make:migration [NAME]
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw make:migration
+
+EXAMPLES
+  $ tsfw make:migration
+```
+
+_See code: [dist/commands/make/migration.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.1/dist/commands/make/migration.ts)_
+
+## `tsfw make:model`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw make:model
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw make:model
+
+EXAMPLES
+  $ tsfw make:model
+```
+
+_See code: [dist/commands/make/model.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.1/dist/commands/make/model.ts)_
+
+## `tsfw make:seeder`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw make:seeder
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw make:seeder
+
+EXAMPLES
+  $ tsfw make:seeder
+```
+
+_See code: [dist/commands/make/seeder.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.1/dist/commands/make/seeder.ts)_
+
+## `tsfw migrate`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw migrate
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw migrate
+
+EXAMPLES
+  $ tsfw migrate
+```
+
+## `tsfw migrate:fresh`
+
+Generate migration class
+
+```
+USAGE
+  $ tsfw migrate:fresh
+
+DESCRIPTION
+  Generate migration class
+
+ALIASES
+  $ tsfw migrate:fresh
+
+EXAMPLES
+  $ tsfw migrate:fresh
+```
 
 ## `tsfw plugins`
 
@@ -150,7 +275,7 @@ DESCRIPTION
 
 
 ALIASES
-  $ tsfw plugins add
+  $ tsfw plugins:add
 
 EXAMPLES
   $ tsfw plugins:install myplugin 
@@ -185,6 +310,8 @@ EXAMPLES
   $ tsfw plugins:inspect myplugin
 ```
 
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.3.0/src/commands/plugins/inspect.ts)_
+
 ## `tsfw plugins:install PLUGIN...`
 
 Installs a plugin into the CLI.
@@ -213,7 +340,7 @@ DESCRIPTION
 
 
 ALIASES
-  $ tsfw plugins add
+  $ tsfw plugins:add
 
 EXAMPLES
   $ tsfw plugins:install myplugin 
@@ -222,6 +349,8 @@ EXAMPLES
 
   $ tsfw plugins:install someuser/someplugin
 ```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.3.0/src/commands/plugins/install.ts)_
 
 ## `tsfw plugins:link PLUGIN`
 
@@ -250,28 +379,7 @@ EXAMPLES
   $ tsfw plugins:link myplugin
 ```
 
-## `tsfw plugins:uninstall PLUGIN...`
-
-Removes a plugin from the CLI.
-
-```
-USAGE
-  $ tsfw plugins:uninstall PLUGIN...
-
-ARGUMENTS
-  PLUGIN  plugin to uninstall
-
-FLAGS
-  -h, --help     Show CLI help.
-  -v, --verbose
-
-DESCRIPTION
-  Removes a plugin from the CLI.
-
-ALIASES
-  $ tsfw plugins unlink
-  $ tsfw plugins remove
-```
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.3.0/src/commands/plugins/link.ts)_
 
 ## `tsfw plugins:uninstall PLUGIN...`
 
@@ -292,8 +400,8 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ tsfw plugins unlink
-  $ tsfw plugins remove
+  $ tsfw plugins:unlink
+  $ tsfw plugins:remove
 ```
 
 ## `tsfw plugins:uninstall PLUGIN...`
@@ -315,17 +423,42 @@ DESCRIPTION
   Removes a plugin from the CLI.
 
 ALIASES
-  $ tsfw plugins unlink
-  $ tsfw plugins remove
+  $ tsfw plugins:unlink
+  $ tsfw plugins:remove
 ```
 
-## `tsfw plugins update`
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.3.0/src/commands/plugins/uninstall.ts)_
+
+## `tsfw plugins:uninstall PLUGIN...`
+
+Removes a plugin from the CLI.
+
+```
+USAGE
+  $ tsfw plugins:uninstall PLUGIN...
+
+ARGUMENTS
+  PLUGIN  plugin to uninstall
+
+FLAGS
+  -h, --help     Show CLI help.
+  -v, --verbose
+
+DESCRIPTION
+  Removes a plugin from the CLI.
+
+ALIASES
+  $ tsfw plugins:unlink
+  $ tsfw plugins:remove
+```
+
+## `tsfw plugins:update`
 
 Update installed plugins.
 
 ```
 USAGE
-  $ tsfw plugins update [-h] [-v]
+  $ tsfw plugins:update [-h] [-v]
 
 FLAGS
   -h, --help     Show CLI help.
@@ -334,4 +467,6 @@ FLAGS
 DESCRIPTION
   Update installed plugins.
 ```
+
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v2.3.0/src/commands/plugins/update.ts)_
 <!-- commandsstop -->

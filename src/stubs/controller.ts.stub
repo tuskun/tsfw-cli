@@ -1,0 +1,32 @@
+import {Request, Response} from "express";
+import {Controller} from "../../framework/controller";
+class __NAME__Controller extends Controller {
+
+  public index(req: Request, res: Response) {
+    res.send('Bookmark index works!');
+  }
+
+  public show(req: Request, res: Response) {
+    res.send('__NAME__ show works!');
+  }
+
+  public create(req: Request, res: Response) {
+    res.send('__NAME__ create works!');
+  }
+
+  public update(req: Request, res: Response) {
+    res.send('__NAME__ update works!');
+  }
+
+  public delete(req: Request, res: Response) {
+    res.send('__NAME__ delete works!');
+  }
+
+  public restore(req: Request, res: Response) {
+    res.send('__NAME__ restore works!');
+  }
+
+  public forceDelete(req: Request, res: Response) {
+    res.send('__NAME__ force delete works!');
+  }
+}
