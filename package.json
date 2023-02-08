@@ -1,17 +1,21 @@
 {
   "name": "@tsfw/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "TSFW CLI",
   "author": "Enes Yurtlu @menesyurtlu",
   "bin": {
-    "tsfw": "./bin/run"
+    "tsfw": "bin/run"
   },
   "homepage": "https://github.com/tuskun/tsfw-cli",
   "license": "MIT",
   "main": "dist/index.js",
-  "repository": "tuskun/tsfw-cli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuskun/tsfw-cli.git"
+  },
   "files": [
     "/bin",
+    "/stubs",
     "/dist",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json"
@@ -21,6 +25,7 @@
     "@oclif/plugin-help": "^5",
     "@oclif/plugin-plugins": "^2.3.0",
     "@types/express": "^4.17.17",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "pg": "^8.9.0",
     "pg-hstore": "^2.3.4",
@@ -49,8 +54,7 @@
     "dirname": "tsfw",
     "commands": "./dist/commands",
     "plugins": [
-      "@oclif/plugin-help",
-      "@oclif/plugin-plugins"
+      "@oclif/plugin-help"
     ],
     "topicSeparator": ":",
     "topics": {
@@ -74,9 +78,14 @@
   "engines": {
     "node": ">=12.0.0"
   },
-  "bugs": "https://github.com/tuskun/tsfw-cli/issues",
+  "bugs": {
+    "url": "https://github.com/tuskun/tsfw-cli/issues"
+  },
   "keywords": [
     "oclif"
   ],
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "directories": {
+    "test": "test"
+  }
 }

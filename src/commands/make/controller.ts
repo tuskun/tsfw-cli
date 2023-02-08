@@ -56,7 +56,7 @@ export default class MakeController extends Command {
     }
 
     const template = fs.readFileSync(
-      path.join(__dirname, '../../stubs/controller.ts.stub'))
+      path.join(__dirname, '../../../stubs/controller.ts.stub'))
       .toString()
       .replaceAll('__NAME__', toPascalCase(args.name) ?? 'Class');
 

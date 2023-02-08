@@ -1,8 +1,11 @@
 import {Args, Command} from '@oclif/core'
 import * as fs from 'fs';
+import * as path from "path";
+import * as dotenv from "dotenv";
 import {SequelizeStorage, Umzug} from "umzug";
 import {Sequelize} from "sequelize";
-import * as path from "path";
+import Connection from "../../utils/connection";
+import {toKebabCase, toPascalCase} from "../../utils";
 
 export default class MakeMigration extends Command {
   static description = 'Generate migration class'
@@ -32,10 +35,15 @@ export default class MakeMigration extends Command {
       this.exit(0)
     }
 
-    const {args} = await this.parse(MakeMigration);
+    // Get env configurations
+    dotenv.config();
 
-    process.env.NODE_ENV = "tsfw-cli";
-    const appInstance = await import(process.cwd() + '/src/index.ts');
+    const {args} = await this.parse(MakeMigration);
+    const db = Connection.getInstance().db;
+
+    this.log(`Generating migration ${toPascalCase(args.name)} class.`);
+
+
     const umzug = new Umzug({
       logger: undefined,
       migrations: {
@@ -51,24 +59,33 @@ export default class MakeMigration extends Command {
       },
       create: {
         template: filepath => [
-          [filepath, fs.readFileSync(path.join(__dirname, '../../stubs/migration.ts.stub')).toString().replaceAll('__TABLENAME__', args.name ?? 'table')],
+          [
+            filepath,
+            fs.readFileSync(path.join(__dirname, '../../../stubs/migration.ts.stub')).toString().replaceAll('__NAME__', args.name?.toLowerCase() ?? 'table')
+          ],
         ]
       },
       storage: new SequelizeStorage({
-        sequelize: appInstance.app.database.connection
+        sequelize: db
       }),
-      context: appInstance.app.database.connection.getQueryInterface()
+      context: db.getQueryInterface()
     });
+
+    umzug.on('migrating', ev => console.log('Migrating', { name: ev.name, path: ev.path }));
+    umzug.on('migrated', ev => console.log('Migrated', ev));
 
     // Generate migration
     try {
       await umzug.create({
-        name: args.name + '.controller.ts.stub',
-        folder: process.cwd() + '/src/migrations'
-      })
+        name: toKebabCase(args.name) + '.migration.ts',
+        folder: process.cwd() + '/src/migrations',
+        skipVerify: true
+      });
+      this.log(`Migration class generated for ${toPascalCase(args.name)}!`);
+      this.exit(0);
     } catch (e) {
-      console.log(e)
-      this.exit()
+      console.log("A problem occured while generating class!", e);
+      this.exit(0);
     }
   }
 }

@@ -1,8 +1,12 @@
+require('ts-node/register');
+
 import {Command} from '@oclif/core'
 import * as fs from "fs"
 import {SequelizeStorage, Umzug} from "umzug";
-import {Sequelize} from "sequelize";
+import {Dialect, Sequelize} from "sequelize";
 import {SequelizeAuto} from "sequelize-auto";
+import Connection from "../../utils/connection";
+import * as dotenv from "dotenv";
 import path = require('path');
 
 export default class CommandMigrate extends Command {
@@ -19,12 +23,23 @@ export default class CommandMigrate extends Command {
   static aliases = ["migrate"]
 
   public async run(): Promise<void> {
-    if (!fs.existsSync(process.cwd() + '/framework')) {
+    // Check for framework
+    if (!fs.existsSync(process.cwd() + '/tsfw.config.json')) {
       this.log("You are not in a TSFW project!");
       this.exit(0)
     }
-    process.env.NODE_ENV = "tsfw-cli";
-    const appInstance = await import(process.cwd() + '/src/index.ts');
+
+    // Check for env file
+    if (!fs.existsSync(process.cwd() + '/.env')) {
+      this.log("You don't have an .env file!");
+      this.exit(0)
+    }
+
+    // Get env configurations
+    dotenv.config();
+
+    // Connection to DB
+    const db = Connection.getInstance().db;
 
     const umzug = new Umzug({
       logger: undefined,
@@ -40,12 +55,12 @@ export default class CommandMigrate extends Command {
         },
       },
       storage: new SequelizeStorage({
-        sequelize: appInstance.app.database.connection
+        sequelize: db
       }),
-      context: appInstance.app.database.connection.queryInterface
+      context: db.queryInterface
     });
     umzug.on('migrating', ev => console.log(ev.name + ' is migrating!'))
-    umzug.on('migrated', ev => console.log('Migrated!'))
+    umzug.on('migrated', ev => console.log(ev.name + ' is migrated!'))
 
     try {
       await umzug.up();
@@ -70,7 +85,7 @@ export default class CommandMigrate extends Command {
         caseFile: 'l',
         caseModel: 'p',
         caseProp: 'c',
-        dialect: 'postgres',
+        dialect: `${<Dialect>process.env.DB_DIALECT}`,
         host: `${process.env.DB_HOST}`,
         lang: 'ts',
         logging: false,
@@ -83,9 +98,15 @@ export default class CommandMigrate extends Command {
         `${process.env.DB_PASSWORD}`,
         options
       );
-      await auto.run();
 
-      this.exit(1)
+      try {
+        await auto.run();
+        console.log('Migration finished!')
+        this.exit(0);
+      } catch (e) {
+        console.log(e)
+        this.exit()
+      }
     } catch (e) {
       throw e;
     }

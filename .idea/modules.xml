@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/tsfw-cli.iml" filepath="$PROJECT_DIR$/.idea/tsfw-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../tsfw-framework/.idea/tsfw-framework.iml" filepath="$PROJECT_DIR$/../tsfw-framework/.idea/tsfw-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../tsfw-starter-template/.idea/tsfw-starter-template.iml" filepath="$PROJECT_DIR$/../tsfw-starter-template/.idea/tsfw-starter-template.iml" />
     </modules>
   </component>
 </project>
