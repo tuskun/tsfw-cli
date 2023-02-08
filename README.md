@@ -20,7 +20,7 @@ $ npm install -g @tsfw/cli
 $ tsfw COMMAND
 running command...
 $ tsfw (--version)
-@tsfw/cli/0.0.2 darwin-x64 node-v18.12.1
+@tsfw/cli/0.0.3 darwin-x64 node-v18.12.1
 $ tsfw --help [COMMAND]
 USAGE
   $ tsfw COMMAND
@@ -57,7 +57,7 @@ EXAMPLES
   $ tsfw command:migrate
 ```
 
-_See code: [dist/commands/command/migrate.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.2/dist/commands/command/migrate.ts)_
+_See code: [dist/commands/command/migrate.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.3/dist/commands/command/migrate.ts)_
 
 ## `tsfw command:migrate-fresh`
 
@@ -77,7 +77,7 @@ EXAMPLES
   $ tsfw command:migrate-fresh
 ```
 
-_See code: [dist/commands/command/migrate-fresh.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.2/dist/commands/command/migrate-fresh.ts)_
+_See code: [dist/commands/command/migrate-fresh.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.3/dist/commands/command/migrate-fresh.ts)_
 
 ## `tsfw help [COMMANDS]`
 
@@ -120,7 +120,7 @@ EXAMPLES
   $ tsfw make:controller
 ```
 
-_See code: [dist/commands/make/controller.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.2/dist/commands/make/controller.ts)_
+_See code: [dist/commands/make/controller.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.3/dist/commands/make/controller.ts)_
 
 ## `tsfw make:migration [NAME]`
 
@@ -140,7 +140,7 @@ EXAMPLES
   $ tsfw make:migration
 ```
 
-_See code: [dist/commands/make/migration.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.2/dist/commands/make/migration.ts)_
+_See code: [dist/commands/make/migration.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.3/dist/commands/make/migration.ts)_
 
 ## `tsfw make:model`
 
@@ -160,7 +160,7 @@ EXAMPLES
   $ tsfw make:model
 ```
 
-_See code: [dist/commands/make/model.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.2/dist/commands/make/model.ts)_
+_See code: [dist/commands/make/model.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.3/dist/commands/make/model.ts)_
 
 ## `tsfw make:seeder`
 
@@ -180,7 +180,7 @@ EXAMPLES
   $ tsfw make:seeder
 ```
 
-_See code: [dist/commands/make/seeder.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.2/dist/commands/make/seeder.ts)_
+_See code: [dist/commands/make/seeder.ts](https://github.com/tuskun/tsfw-cli/blob/v0.0.3/dist/commands/make/seeder.ts)_
 
 ## `tsfw migrate`
 
